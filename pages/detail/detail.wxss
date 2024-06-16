@@ -1,0 +1,21 @@
+.detail {
+  width: 100%;
+  padding-bottom: 120rpx;
+}
+
+/* 推荐信息 */
+.recommend {
+  color: #666;
+  font-size: 34rpx;
+  padding: 30rpx 20rpx;
+}
+
+.recommend .content {
+  font-size: 28rpx;
+  color: #ff5777;
+  text-align: center;
+}
+
+.detail .detail-back-top {
+  bottom: 130rpx;
+}

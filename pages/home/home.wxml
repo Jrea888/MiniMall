@@ -1,0 +1,20 @@
+<view class="home">
+  <view hidden="{{ !showTabControl }}">
+    <tab-control class='tab-control-temp' showType="fixed" titles="{{titles}}" bind:tabclick="tabClickHandle"></tab-control>
+  </view>
+
+  <scroll-view style="height:{{ScreenTotalH}}rpx" scroll-y scroll-with-animation class="scroll-content" scroll-top="{{topPosition}}" bindscroll="scrollPosition" bindscrolltolower="scorllBottomHandle">
+    <!-- 轮播图 -->
+    <swiper-image banners="{{bannersImage}}" />
+    <!-- 推荐数据 -->
+    <recommend recommends="{{recommends}}" bind:imageLoad="imageLoadHandle" />
+    <!-- 本周流行 -->
+    <week-popular />
+    <!-- tab切换 -->
+    <tab-control class='tab-control' titles="{{titles}}" bind:tabclick="tabClickHandle"></tab-control>
+    <!-- tab切换时对应的 List 数据 -->
+    <good-list class="good-list" goodlist="{{goods[currentType].list}}"></good-list>
+    <!-- 返回顶部 hidden对于自定义组件无效 -->
+    <back-top bindtap="backTopHandle" wx:if="{{showBackTop}}" />
+  </scroll-view>
+</view>

@@ -1,0 +1,26 @@
+<scroll-view style="height:{{ScreenTotalH}}rpx" scroll-y scroll-with-animation class="detail" scroll-top="{{topPosition}}" bindscroll="scrollPosition">
+  <!-- 轮播图 -->
+  <swiper-image height="720" banners="{{topBannerImages}}"></swiper-image>
+  <!-- 基本信息 base-info baseInfo -->
+  <base-info baseInfo="{{baseInfo}}" />
+  <!-- 商品信息 -->
+  <shop-info shopInfo="{{shopInfo}}" />
+  <!-- 详情信息 -->
+  <detail-info detailInfo="{{detailInfo}}" />
+  <!-- 商品参数信息 -->
+  <shop-param-info paramInfo="{{paramInfo}}" />
+  <!-- 商品品论信息 -->
+  <comment-info commentInfo="{{commentInfo}}" />
+  <!-- 商品推荐信息 -->
+  <view class="recommend">
+    <view class="title">商品推荐</view>
+    <view class="content">
+      <text>待开发~</text>
+      <!-- <good-list goodlist="{{recommends}}"></good-list> -->
+    </view>
+  </view>
+  <!-- 返回顶部 hidden对于自定义组件无效 -->
+  <back-top out-class="detail-back-top" bindtap="backTopHandle" wx:if="{{showBackTop}}" />
+</scroll-view>
+<!-- 底部信息 -->
+<bottom-bar bind:addcart="onAddCart" />

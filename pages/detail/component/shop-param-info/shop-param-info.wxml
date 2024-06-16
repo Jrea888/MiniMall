@@ -1,0 +1,23 @@
+<view class="param-info">
+  <view class="sizes">
+    <block wx:for="{{paramInfo.sizes}}" wx:for-item="outItem" wx:for-index="outIndex" wx:key="outIndex">
+      <view class="size-table">
+        <block wx:for="{{outItem}}" wx:for-item="subItem" wx:for-index="subIndex" wx:key="subIndex">
+          <view class="row">
+            <block wx:for="{{subItem}}" wx:for-item="childItem" wx:for-index="childIndex" wx:key="childIndex">
+              <view class="item">{{childItem}}</view>
+            </block>
+          </view>
+        </block>
+      </view>
+    </block>
+  </view>
+  <view class="infos">
+    <block wx:for="{{paramInfo.infos}}" wx:key="index">
+      <view class="info-row">
+        <view class="key">{{item.key}}</view>
+        <view class="value">{{item.value}}</view>
+      </view>
+    </block>
+  </view>
+</view>

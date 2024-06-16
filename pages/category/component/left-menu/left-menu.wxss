@@ -1,0 +1,19 @@
+
+.menu {
+  height: 100%;
+  background-color: #f6f6f6;
+}
+
+.menu .item {
+  font-size: 28rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+}
+
+.menu .active {
+  color: #f55777;
+  font-weight: 700;
+  background: #fff;
+  border-left: 6rpx solid #f55777;
+}

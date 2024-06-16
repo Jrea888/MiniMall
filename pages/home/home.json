@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "tab-control":"/components/tab-control/tab-control",
+    "good-list":"/components/good-list/good-list",
+    "swiper-image": "/components/swiper-image/swiper-image",
+    "back-top": "/components/back-top/back-top",
+    "recommend": "./component/recommend/recommend",
+    "week-popular":"./component/week-popular/week-popular"
+  }
+}

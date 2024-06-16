@@ -1,0 +1,11 @@
+.good-list{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 16rpx;
+}
+
+.good-list > .good-item{
+  width: 48%;
+  margin-bottom: 20rpx;
+} 

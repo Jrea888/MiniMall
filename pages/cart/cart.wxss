@@ -1,0 +1,150 @@
+.cart {
+  height: 100%;
+}
+
+.cart .cart-list {
+  width: 100%;
+  height: calc(100% - 88rpx);
+  padding-bottom: 120rpx;
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 20rpx;
+  box-sizing: border-box;
+  border-bottom: 1px solid #eee;
+}
+
+.list-item .left {
+  display: flex;
+  align-items: center;
+  width: 260rpx;
+}
+
+.list-item .left .cart-image {
+  width: 180rpx;
+  height: 240rpx;
+  margin-right: 20rpx;
+  border-radius: 20rpx;
+}
+
+.list-item .right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 260rpx);
+}
+
+.list-item .right .top-info {
+  width: 100%;
+}
+
+.list-item .right .top-info .title {
+  color: #333;
+  font-size: 34rpx;
+  font-weight: 700;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.list-item .right .top-info .desc {
+  font-size: 28rpx;
+  margin-top: 20rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.list-item .right .price-count {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 40rpx;
+}
+
+.list-item .right .price-count .count-btn {
+  display: flex;
+  align-items: center;
+}
+
+.list-item .right .price-count .price {
+  color: #ff5777;
+  font-size: 40rpx;
+}
+
+.list-item .right .price-count .count-btn .count {
+  margin: 0 14rpx;
+}
+
+.list-item .right .price-count .count-btn .add,
+.list-item .right .price-count .count-btn .sub {
+  display: flex;
+  justify-content: center;
+  width: 60rpx;
+  height: 60rpx;
+  line-height: 55rpx;
+  border-radius: 4rpx;
+  overflow: visible;
+}
+
+.default {
+  display: flex;
+  justify-content: center;
+  padding-top: 50%;
+}
+
+.default text {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.bottom-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 120rpx;
+  background: #ff5777;
+}
+
+.bottom-bar {
+  display: flex;
+}
+
+.bottom-bar .left {
+  display: flex;
+  align-items: center;
+  width: 170rpx;
+  font-size: 30rpx;
+  padding-left: 20rpx;
+  box-sizing: border-box;
+  background: #eee;
+}
+
+.bottom-bar .left label {
+  display: flex;
+  align-items: center;
+}
+
+.bottom-bar .middle {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  font-size: 32rpx;
+  background: #eee;
+}
+
+.bottom-bar .right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200rpx;
+  height: 100%;
+  color: #fff;
+  background: #ff4500;
+  font-size: 32rpx;
+}

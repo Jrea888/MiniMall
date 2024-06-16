@@ -1,0 +1,18 @@
+<view class="detail-info">
+  <view class="header">
+    <view class="start line"></view>
+    <view class="top-desc">{{detailInfo.desc}}</view>
+    <view class="end line"></view>
+  </view>
+
+  <view class="content">
+    <block wx:for="{{detailInfo.detailImage}}" wx:for-item="subItem" wx:fro-index="subIndex" wx:key="subIndex">
+      <view class="title">{{subItem.key}}</view>
+      <block wx:for="{{subItem.list}}" wx:for-item="childItem" wx:for-index="childIndex" wx:key="childIndex">
+        <view class="img">
+          <image src="{{childItem}}" mode="widthFix" />
+        </view>
+      </block>
+    </block>
+  </view>
+</view>

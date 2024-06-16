@@ -1,0 +1,8 @@
+<view class="recommend">
+  <block wx:for-item="item" wx:for="{{recommends}}" wx:key="index">
+    <view class="recommend-item" bind:tap="weekItemLinkHandle" data-item="{{item}}">
+      <image class="recommend-image" src="{{item.image}}" bindload="imageLoadedHandle"></image>
+      <view class="recommend-text">{{item.title}}</view>
+    </view>
+  </block>
+</view>

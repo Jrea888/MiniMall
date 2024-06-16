@@ -1,0 +1,31 @@
+
+ .content {
+  width: 100%;
+}
+
+ .content .sub-category {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20rpx;
+  margin-top: 30rpx;
+}
+
+ .content .sub-category .item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 33.3%;
+}
+
+ .content .sub-category .item image {
+  width: 80%;
+}
+
+ .content .sub-category .item text {
+  font-size: 28rpx;
+  margin: 30rpx 0;
+}
+
+ .sub-detail {
+  width: 100%;
+}

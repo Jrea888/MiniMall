@@ -1,0 +1,30 @@
+<view class="shop-info">
+  <view class="header-info">
+    <image src="{{shopInfo.logo}}" mode="widthFix" />
+    <text class="name">{{shopInfo.name}}</text>
+  </view>
+  <view class="shop-middle">
+    <view class="left">
+      <view class="l-itme">
+        <text class="sells">{{shopInfo.sells}}</text>
+        <text class="l-text">总销量</text>
+      </view>
+      <view class="l-itme">
+        <text class="sells">{{shopInfo.goodsCount}}</text>
+        <text class="l-text">全部宝贝</text>
+      </view>
+    </view>
+    <view class="right">
+      <block wx:for="{{shopInfo.score}}" wx:key="index">
+        <view class="r-item">
+          <text class="t-text common-text">{{item.name}}</text>
+          <text class="score common-text {{item.isBetter ? 'height' : 'bottom'}}">{{item.score}}</text>
+          <text class="better common-text {{item.isBetter ? 'height' : 'bottom'}}">{{item.isBetter ? '高' : '底'}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+  <view class="entrance">
+    <button size="mini">进店逛逛</button>
+  </view>
+</view>

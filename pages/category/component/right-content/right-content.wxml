@@ -1,0 +1,13 @@
+<scroll-view class="content" style="height:{{ScreenHeight}}rpx" scroll-y>
+  <view class="sub-category">
+    <block wx:for="{{subcategories}}" wx:key="index">
+      <view class="item">
+        <image src="{{item.image}}" mode="widthFix" />
+        <text>{{item.title}}</text>
+      </view>
+    </block>
+  </view>
+  <view class="sub-detail">
+    <good-list goodlist="{{categoryDetail}}"></good-list>
+  </view>
+</scroll-view>

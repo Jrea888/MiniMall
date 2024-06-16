@@ -1,0 +1,48 @@
+<view class="cart">
+<!--  style="height:{{ScreenTotalH}}rpx" -->
+  <scroll-view class="cart-list" scroll-with-animation scroll-y>
+    <block wx:if="{{cartList.length > 0}}">
+      <block wx:for="{{cartList}}" wx:key="index">
+        <view class="list-item" wx:if="{{cartList.length > 0}}">
+          <view class="left">
+            <radio checked="{{item.checked}}" color="#ff5777" bind:tap="radioChangeHandle" data-index="{{index}}" />
+            <image class="cart-image" src="{{item.imageUrl}}" mode='aspectFill'></image>
+          </view>
+          <view class="right">
+            <view class="top-info">
+              <view class="title">{{item.title}}</view>
+              <view class="desc">{{item.desc}}</view>
+            </view>
+            <view class='price-count'>
+              <view class='price'>¥{{item.price}}</view>
+              <view class="count-btn">
+                <button type="default" class="sub" bind:tap="cartShopSubHandle" data-index="{{index}}">-</button>
+                <view class='count'>x{{item.counter}}</view>
+                <button type="default" class="add" bind:tap="cartShopAddHandle" data-index="{{index}}">+</button>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </block>
+    <view class="default" wx:else>
+      <text>购物车空空如也，快去挑选中意好货吧~</text>
+    </view>
+  </scroll-view>
+
+  <!-- 底部信息栏 -->
+  <view class="bottom-bar">
+    <view class="left">
+      <label>
+        <radio checked="{{isAllSelect}}" color="#ff5777" bind:tap="selectAllShopHandle" />
+        <text>全选</text>
+      </label>
+    </view>
+    <view class="middle">
+      <text>总计：￥{{totalPrice}}</text>
+    </view>
+    <view class="right">
+      <text>去结算({{totalCounter}})</text>
+    </view>
+  </view>
+</view>

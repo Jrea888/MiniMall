@@ -1,0 +1,9 @@
+.week-popular {
+  width: 100%;
+  height: 543rpx;
+
+}
+.week-popular .image{
+  width: 100%;
+  height: 100%;
+}

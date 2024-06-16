@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "left-menu": "./component/left-menu/left-menu",
+    "right-content": "./component/right-content/right-content"
+  },
+  "navigationBarTitleText": "商品分类"
+}

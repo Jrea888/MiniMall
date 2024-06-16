@@ -1,0 +1,17 @@
+<view class="comment-info">
+  <view class="header">
+    <view>用户评价</view>
+    <view>更多>></view>
+  </view>
+  <view class="bottom">
+    <view class="user-info">
+      <image src="{{commentInfo.user.avatar}}" mode="widthFix" />
+      <view>{{commentInfo.user.uname}}</view>
+    </view>
+    <view class="context">{{commentInfo.content}}</view>
+    <view class="context-params">
+      <text>{{commentInfo.created}}</text>
+      <text>{{commentInfo.style}}</text>
+    </view>
+  </view>
+</view>

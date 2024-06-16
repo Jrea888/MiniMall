@@ -1,0 +1,8 @@
+<view class="category">
+  <view class="left">
+    <left-menu categories="{{categories}}" ScreenHeight="{{ScreenHeight}}" bind:menuClick="menuClickHandle" />
+  </view>
+  <view class="right">
+    <right-content subcategories="{{categoryData[currentIndex].subcategories}}" categoryDetail="{{categoryData[currentIndex].categoryDetail}}" ScreenHeight="{{ScreenHeight}}" />
+  </view>
+</view>

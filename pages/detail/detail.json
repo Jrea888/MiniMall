@@ -1,0 +1,14 @@
+{
+  "usingComponents": {
+    "shop-info": "./component/shop-info/shop-info",
+    "base-info": "./component/base-info/base-info",
+    "detail-info": "./component/detail-info/detail-info",
+    "shop-param-info": "./component/shop-param-info/shop-param-info",
+    "bottom-bar": "./component/bottom-bar/bottom-bar",
+    "comment-info": "./component/comment-info/comment-info",
+    "back-top": "/components/back-top/back-top",
+    "good-list": "/components/good-list/good-list",
+    "swiper-image": "/components/swiper-image/swiper-image"
+  },
+  "navigationBarTitleText": "商品详情"
+}

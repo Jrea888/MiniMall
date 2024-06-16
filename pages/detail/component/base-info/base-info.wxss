@@ -1,0 +1,64 @@
+.base-info {
+  border-bottom: 12rpx solid #f2f2f2;
+}
+
+.top {
+  padding: 12rpx 20rpx 0;
+}
+
+.new-price {
+  color: #ff5777;
+}
+
+.old-price {
+  font-size: 26rpx;
+  text-decoration: line-through;
+  margin: 0 16rpx 0 20rpx;
+}
+
+.discount {
+  position: relative;
+  top: -12rpx;
+  color: #fff;
+  font-size: 22rpx;
+  padding: 0 8rpx;
+  border-radius: 12rpx;
+  background-color: #ff5777;
+}
+
+.sell-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 26rpx;
+  margin-top: 30rpx;
+  padding-bottom: 16rpx;
+}
+
+.base-title {
+  font-size: 32rpx;
+  text-align: justify;
+  margin-bottom: 10rpx;
+}
+
+.services {
+  display: flex;
+  justify-content: space-between;
+  padding: 30rpx 20rpx;
+  border-top: 1px solid rgba(200, 200, 200, .6);
+}
+
+.service-item {
+  display: flex;
+  align-items: center;
+}
+
+.services .icon {
+  width: 24rpx;
+  height: 24rpx;
+}
+
+.services .name {
+  color: #333;
+  font-size: 24rpx;
+  margin-left: 8rpx;
+}
