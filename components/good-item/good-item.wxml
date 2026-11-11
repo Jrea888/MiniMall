@@ -1,5 +1,5 @@
 <view class="good-item" bind:tap="itemClick">
-  <image class="good-image" src="{{goods.show.img || goods.img}}" mode="widthFix" />
+  <image class="good-image" src="{{goods.show.img || goods.img || goods.image}}" mode="widthFix" />
   <view class="description">
     <view class="good-title">{{goods.title}}</view>
     <text class="price">￥{{goods.price}}</text>

@@ -7,14 +7,14 @@
       <text class="discount">{{baseInfo.discount}}</text>
     </view>
     <view class="sell-info">
-      <block wx:for="{{baseInfo.columns}}" wx:for-item="v" wx:key="index">
+      <block wx:for="{{baseInfo.columns}}" wx:for-item="v" wx:key="*this">
         <view class="sell-name">{{v}}</view>
       </block>
     </view>
   </view>
 
   <view class="services">
-    <block wx:for="{{baseInfo.services}}" wx:key="index">
+    <block wx:for="{{baseInfo.services}}" wx:key="name">
       <view class="service-item">
         <image class="icon" src="{{item.icon}}" />
         <view class="name">{{item.name}}</view>

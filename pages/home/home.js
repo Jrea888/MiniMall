@@ -47,6 +47,10 @@ Page({
     })
     this._getData()
   },
+  onReady() {
+    // 兜底量一次：图片全部加载完后再校正一次吸附阈值
+    setTimeout(() => this.imageLoadHandle(), 500)
+  },
   _getData() {
     // 轮播图数据
     this._getBannerList();
@@ -103,66 +107,66 @@ Page({
   },
   // scroll-view 滚动时触发
   scrollPosition(e) {
-    // 返回顶部判断
-    this.setData({
-      // 当滚动大于 预期常亮时(1000)，显示返回顶部按钮
-      showBackTop: e.detail.scrollTop > TOP_DISTANCE
-    })
+    const scrollTop = e.detail.scrollTop
+    // 记录当前位置，返回顶部时要用；用普通属性存，避免每次滚动都 setData
+    this._scrollTop = scrollTop
 
-    // Tab切换栏 吸附
-    wx.createSelectorQuery().select('.tab-control').boundingClientRect((rect) => {
+    // 返回顶部：滚动超过阈值才显示按钮
+    const showBackTop = scrollTop > TOP_DISTANCE
+
+    // 兜底：万一阈值还没量到（图片迟迟没触发 load），第一次滚动时补测一次
+    if (!this.data.tabControlTop && scrollTop > 0) {
+      this.imageLoadHandle()
+    }
+
+    // Tab 吸顶：阈值在图片加载完时已经量好，这里只做算术比较。
+    // 原来这里每帧都 createSelectorQuery().boundingClientRect().exec()，等于每帧一次跨线程查询。
+    const showTabControl = this.data.tabControlTop > 0 && scrollTop >= this.data.tabControlTop
+
+    // 值没变就不 setData，减少渲染层通信
+    if (showBackTop !== this.data.showBackTop || showTabControl !== this.data.showTabControl) {
       this.setData({
-        showTabControl: !(rect.top > 0)
+        showBackTop,
+        showTabControl
       })
-    }).exec()
+    }
   },
   // scroll-view 滚动到底部
   scorllBottomHandle() {
     this._getTabSwitchData(this.data.currentType)
   },
-  // 图片加载完 再获取距离顶部的 距离
+  // 图片加载完 再获取一次 tab-control 距离顶部的距离（作为吸顶阈值）
   imageLoadHandle() {
     // 获取一个组件距离顶部的距离 忽略exec()调用，会导致不生效
     wx.createSelectorQuery().select('.tab-control').boundingClientRect((rect) => {
-      this.setData({
-        tabControlTop: rect.top
-      })
+      if (rect) {
+        // 加上当前滚动距离，得到"相对滚动内容顶部"的绝对偏移，
+        // 这样即使在滚动过程中测量也是准的
+        const top = rect.top + (this._scrollTop || 0)
+        if (top > 0 && Math.abs(top - this.data.tabControlTop) > 1) {
+          this.setData({
+            tabControlTop: top
+          })
+        }
+      }
     }).exec()
   },
   // 返回顶部
   backTopHandle() {
+    // scroll-view 的 scroll-top 只有在"值发生变化"时才会滚动。
+    // 之前 topPosition 一直是 0，setData 同一个值等于什么都没做，所以点了没反应。
+    // 做法：先把 topPosition 抬到当前滚动位置，再在下一帧归零，制造一次真实变化。
+    const current = this._scrollTop || 1
     this.setData({
-      topPosition: 0,
-      tabControlTop: 0,
-      showBackTop: false,
+      topPosition: current
     })
-    // 页面返回顶部
-    // wx.pageScrollTo({
-    //   scrollTop: 0
-    // })
-  },
-  // 页面滚动到底部
-  onReachBottom() {
-    // this._getTabSwitchData(this.data.currentType)
-  },
-  // 监听页面滚动  官方文档不推荐频繁调用 this.setData，采用scroll-view内置组件
-  onPageScroll(options) {
-    // const scrollTop = options.scrollTop
 
-    // // 返回顶部判断
-    // const isBack = scrollTop >= TOP_DISTANCE
-    // if (isBack !== this.data.showBackTop) {
-    //   this.setData({
-    //     showBackTop: isBack
-    //   })
-    // }
-
-    // // tab切换吸附效果
-    // const isFixed = this.data.tabControlTop <= scrollTop
-    // if (isFixed !== this.data.showTabControl) {
-    //   this.setData({
-    //     showTabControl: isFixed
-    //   })
-    // }
+    wx.nextTick(() => {
+      this.setData({
+        topPosition: 0,
+        showBackTop: false,
+        showTabControl: false
+      })
+    })
   }
 })

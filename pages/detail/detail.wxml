@@ -15,8 +15,8 @@
   <view class="recommend">
     <view class="title">商品推荐</view>
     <view class="content">
-      <text>待开发~</text>
-      <!-- <good-list goodlist="{{recommends}}"></good-list> -->
+      <good-list wx:if="{{recommends.length > 0}}" goodlist="{{recommends}}"></good-list>
+      <text wx:else>暂无推荐</text>
     </view>
   </view>
   <!-- 返回顶部 hidden对于自定义组件无效 -->

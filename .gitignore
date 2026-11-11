@@ -1,0 +1,12 @@
+.DS_Store
+Thumbs.db
+
+# 小程序 npm 构建产物（本项目没有 npm 依赖，保留以防后续接入）
+miniprogram_npm/
+
+# 依赖目录
+node_modules/
+
+# 本地工具私有配置：包含开发者工具的本地设置。
+# 如果团队需要共享调试条件（编译模式等），把下面这行删掉并提交该文件即可。
+project.private.config.json

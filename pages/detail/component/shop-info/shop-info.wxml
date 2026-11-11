@@ -15,11 +15,11 @@
       </view>
     </view>
     <view class="right">
-      <block wx:for="{{shopInfo.score}}" wx:key="index">
+      <block wx:for="{{shopInfo.score}}" wx:key="name">
         <view class="r-item">
           <text class="t-text common-text">{{item.name}}</text>
           <text class="score common-text {{item.isBetter ? 'height' : 'bottom'}}">{{item.score}}</text>
-          <text class="better common-text {{item.isBetter ? 'height' : 'bottom'}}">{{item.isBetter ? '高' : '底'}}</text>
+          <text class="better common-text {{item.isBetter ? 'height' : 'bottom'}}">{{item.isBetter ? '高' : '低'}}</text>
         </view>
       </block>
     </view>

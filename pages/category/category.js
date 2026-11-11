@@ -31,7 +31,7 @@ Page({
       
       this.setData({
         categoryData,
-        categories: res.data.category.list
+        categories: categories
       })
 
       // 请求第一个分类数据
@@ -44,11 +44,16 @@ Page({
     const id = this.data.categories[currentIndex].maitKey
 
     categoryService.getSubcategory(id).then(res => {
-      const tempCategoryData = this.data.categoryData;
-      tempCategoryData[currentIndex].subcategories = res.data.list;
+      // 拷贝一份再改：原来直接改 this.data.categoryData 里的对象，
+      // 变更来源难以追踪，也不符合「构造新对象再 setData」的约定
+      const categoryData = { ...this.data.categoryData }
+      categoryData[currentIndex] = {
+        ...categoryData[currentIndex],
+        subcategories: res.data.list
+      }
 
       this.setData({
-        categoryData: tempCategoryData
+        categoryData
       })
     })
   },
@@ -58,9 +63,12 @@ Page({
   },
   _getRealCategoryDetail(index, detailId, type) {
     categoryService.getCategoryDetail(detailId, type).then(res => {
-      const categoryData = this.data.categoryData
-      // 填充数据
-      categoryData[index].categoryDetail = res
+      const categoryData = { ...this.data.categoryData }
+      categoryData[index] = {
+        ...categoryData[index],
+        categoryDetail: res
+      }
+
       this.setData({
         categoryData
       })

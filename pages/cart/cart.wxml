@@ -2,7 +2,7 @@
 <!--  style="height:{{ScreenTotalH}}rpx" -->
   <scroll-view class="cart-list" scroll-with-animation scroll-y>
     <block wx:if="{{cartList.length > 0}}">
-      <block wx:for="{{cartList}}" wx:key="index">
+      <block wx:for="{{cartList}}" wx:key="iid">
         <view class="list-item" wx:if="{{cartList.length > 0}}">
           <view class="left">
             <radio checked="{{item.checked}}" color="#ff5777" bind:tap="radioChangeHandle" data-index="{{index}}" />

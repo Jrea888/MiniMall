@@ -13,7 +13,7 @@
     "navigationBarTitleText": "购物街",
     "backgroundTextStyle": "light"
   },
-  "debug": true,
+  "debug": false,
   "sitemapLocation": "sitemap.json",
   "tabBar": {
     "color": "#333333",

@@ -17,15 +17,48 @@ const SCREEN_INFO = {
   SCREEN_TOTAL_HEIGHT // 屏幕的高度
 }
 
+// 购物车本地缓存 key
+const CART_STORAGE_KEY = 'cartGoods'
+
 App({
   // 全局变量
   globalData: {
     cartList: [], // 购物车列表
-    TOP_DISTANCE: 1000,
     screenInfo: SCREEN_INFO,
     ScreenTotalW: SCREEN_WIDTH,
     ScreenTotalH: SCREEN_HEIGHT,
   },
+
+  // 购物车变化订阅者列表。
+  // 原来这里只有一个 app.cartCallBack 槽位，谁后赋值谁生效，
+  // 多个页面同时关心购物车时会互相覆盖；改成数组支持多订阅。
+  cartListeners: [],
+
+  onLaunch() {
+    // 恢复上次的购物车。
+    // 之前 cartList 只存在内存里，小程序被杀死/重进就清空了。
+    try {
+      const cache = wx.getStorageSync(CART_STORAGE_KEY)
+      if (Array.isArray(cache)) {
+        this.globalData.cartList = cache
+      }
+    } catch (e) {
+      // 读缓存失败时按空车处理，不影响启动
+    }
+  },
+
+  // 订阅购物车变化
+  onCartChange(listener) {
+    if (typeof listener === 'function') {
+      this.cartListeners.push(listener)
+    }
+  },
+
+  // 取消订阅
+  offCartChange(listener) {
+    this.cartListeners = this.cartListeners.filter(fn => fn !== listener)
+  },
+
   // 全局触发函数
   addToCart(shopItem) {
     const oldGoods = this.globalData.cartList.find(item => item.iid === shopItem.iid)
@@ -63,10 +96,20 @@ App({
     })
     this._cartShopCalculateCallBack()
   },
-  // 购物车商品计算回调
+  // 购物车商品计算回调：落盘 + 通知所有订阅者
   _cartShopCalculateCallBack() {
-    if (this.cartCallBack) {
-      this.cartCallBack()
+    try {
+      wx.setStorageSync(CART_STORAGE_KEY, this.globalData.cartList)
+    } catch (e) {
+      // 写缓存失败（如超出配额）不影响主流程
     }
+
+    this.cartListeners.forEach(listener => {
+      try {
+        listener()
+      } catch (e) {
+        // 单个订阅者出错不影响其他订阅者
+      }
+    })
   }
 })

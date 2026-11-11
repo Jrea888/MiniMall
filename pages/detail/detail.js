@@ -9,6 +9,9 @@ import {
 import {
   TOP_DISTANCE
 } from '../../common/const'
+import {
+  formatDate
+} from '../../utils/utils'
 
 const app = getApp();
 
@@ -59,6 +62,8 @@ Page({
       let commentInfo = {}
       if (data.rate && data.rate.cRate > 0) {
         commentInfo = data.rate.list[0]
+        // 接口给的是秒级时间戳，直接渲染会显示一串数字，这里先格式化好
+        commentInfo.createdText = formatDate(commentInfo.created, 'yyyy-MM-dd')
       }
 
       this.setData({
@@ -82,7 +87,7 @@ Page({
     // 1.获取商品对象
     const obj = {}
     obj.iid = this.data.iid;
-    obj.imageUrl = this.data.topBannerImages[0].image;
+    obj.imageUrl = this.data.topBannerImages[0] && this.data.topBannerImages[0].image;
     obj.title = this.data.baseInfo.title;
     obj.desc = this.data.baseInfo.desc;
     obj.price = this.data.baseInfo.realPrice;
@@ -90,20 +95,34 @@ Page({
     app.addToCart(obj)
     // 3.提示加入成功
     wx.showToast({
-      title: '加入购入车成功'
+      title: '加入购物车成功'
     })
   },
   // 滚动触发 获取滚动离顶部的间距
   scrollPosition(e) {
-    this.setData({
-      showBackTop: e.detail.scrollTop > TOP_DISTANCE
-    })
+    const scrollTop = e.detail.scrollTop
+    this._scrollTop = scrollTop
+
+    const showBackTop = scrollTop > TOP_DISTANCE
+    if (showBackTop !== this.data.showBackTop) {
+      this.setData({
+        showBackTop
+      })
+    }
   },
   // 返回顶部
   backTopHandle() {
+    // 同首页：scroll-top 只有值变化才会滚动，所以先抬到当前位置再归零
+    const current = this._scrollTop || 1
     this.setData({
-      topPosition: 0,
-      showBackTop: false
+      topPosition: current
+    })
+
+    wx.nextTick(() => {
+      this.setData({
+        topPosition: 0,
+        showBackTop: false
+      })
     })
   }
 })

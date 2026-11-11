@@ -6,9 +6,9 @@
   </view>
 
   <view class="content">
-    <block wx:for="{{detailInfo.detailImage}}" wx:for-item="subItem" wx:fro-index="subIndex" wx:key="subIndex">
+    <block wx:for="{{detailInfo.detailImage}}" wx:for-item="subItem" wx:for-index="subIndex" wx:key="key">
       <view class="title">{{subItem.key}}</view>
-      <block wx:for="{{subItem.list}}" wx:for-item="childItem" wx:for-index="childIndex" wx:key="childIndex">
+      <block wx:for="{{subItem.list}}" wx:for-item="childItem" wx:for-index="childIndex" wx:key="*this">
         <view class="img">
           <image src="{{childItem}}" mode="widthFix" />
         </view>

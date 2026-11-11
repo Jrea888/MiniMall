@@ -10,7 +10,7 @@
     </view>
     <view class="context">{{commentInfo.content}}</view>
     <view class="context-params">
-      <text>{{commentInfo.created}}</text>
+      <text>{{commentInfo.createdText || commentInfo.created}}</text>
       <text>{{commentInfo.style}}</text>
     </view>
   </view>
